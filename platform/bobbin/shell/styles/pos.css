@@ -1,0 +1,821 @@
+/* The POS presentation uses the same app modules, data and Thread components.
+   These rules deliberately do not restyle the normal web presentation. */
+.presentation-switch {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background: #fff;
+}
+.presentation-switch button {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  color: #333;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.presentation-switch button:hover {
+  background: #eee;
+}
+.presentation-switch button[aria-pressed='true'] {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+.presentation-switch button:focus-visible {
+  outline: 3px solid #c8102e;
+  outline-offset: 1px;
+}
+.platform.platform--pos {
+  display: block;
+  min-width: 0;
+  min-height: 100dvh;
+  background: #e8e8e8;
+  color: #111;
+  font-size: 14px;
+}
+.platform--pos > .sidebar,
+.platform--pos .topbar {
+  display: none;
+}
+.platform--pos .workspace {
+  width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+  margin: 0 auto;
+}
+.pos-host-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  min-height: 72px;
+  padding: 12px 24px;
+  border-top: 5px solid #e11a2b;
+  border-bottom: 1px solid #b7b7b7;
+  background: #fff;
+}
+.pos-host-header a {
+  color: #111;
+  text-decoration: none;
+}
+.pos-host-header img {
+  display: block;
+  width: 126px;
+  height: auto;
+}
+.pos-host-header > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  min-width: 0;
+}
+.pos-host-header .pos-host-heading {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.pos-host-heading > span {
+  color: #555;
+  font-size: 11px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+.pos-host-context {
+  color: #444;
+  font-size: 12px;
+}
+.pos-host-header strong {
+  font-size: 17px;
+  font-weight: 700;
+}
+.pos-host-header .presentation-switch button {
+  min-height: 38px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 13px;
+}
+.pos-host-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+  min-height: 36px;
+  padding: 8px 24px;
+  border-bottom: 1px solid #ccc;
+  background: #f6f6f6;
+  color: #444;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pos-host-status strong {
+  color: #111;
+}
+.platform--pos .workspace > main {
+  width: 100%;
+  max-width: 1312px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 16px;
+}
+.platform--pos #application-root {
+  min-width: 0;
+}
+.platform--pos .workspace-footer {
+  gap: 10px 20px;
+  min-height: 52px;
+  padding: 10px 24px;
+  font-size: 12px;
+}
+.platform--pos .workspace-footer select {
+  min-height: 36px;
+  font-size: 12px;
+}
+.platform--pos .hub-hero,
+.platform--pos .architecture-note {
+  display: none;
+}
+.platform--pos .application-section {
+  max-width: 1060px;
+  min-height: 500px;
+  margin: 0 auto;
+  padding: 12px 8px 32px;
+}
+.platform--pos .application-section .section-heading {
+  margin-top: 0;
+}
+.platform--pos .application-section .section-heading h2 {
+  font-size: 25px;
+}
+.platform--pos .app-card {
+  min-height: 300px;
+  padding: 26px;
+  border-color: #b7b7b7;
+  border-top: 4px solid #111;
+  box-shadow: 0 2px 6px #00000008;
+}
+.platform--pos .app-card h3 {
+  font-size: 24px;
+}
+.platform--pos .app-card > p {
+  font-size: 14px;
+}
+.platform--pos .app-card .app-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 15px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+.platform--pos .app-card .app-open:hover {
+  background: #333;
+}
+.platform--pos .thread-button {
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.platform--pos .thread-button:disabled,
+.pos-function-key:disabled {
+  cursor: not-allowed;
+}
+.platform--pos .thread-badge {
+  font-size: 11px;
+}
+.platform--pos .thread-field label,
+.platform--pos .document-filter label {
+  font-size: 13px;
+}
+.platform--pos .thread-field input,
+.platform--pos .thread-field select,
+.platform--pos .document-filter select {
+  min-height: 44px;
+  font-size: 14px;
+}
+.platform--pos .thread-panel {
+  margin-bottom: 16px;
+  border-color: #bbb;
+  box-shadow: none;
+}
+.platform--pos .thread-panel__header {
+  padding: 18px 20px 0;
+}
+.platform--pos .thread-panel__body {
+  padding: 20px;
+}
+.platform--pos .thread-panel__body > .thread-table-scroll:only-child {
+  margin: -20px;
+}
+.platform--pos .thread-panel--flush .thread-panel__body,
+.platform--pos .panel-flush .thread-panel__body {
+  padding: 0;
+}
+.platform--pos .thread-table {
+  font-size: 14px;
+}
+.platform--pos .thread-table th {
+  padding: 13px 16px;
+  color: #444;
+  font-size: 12px;
+}
+.platform--pos .thread-table td {
+  padding: 13px 16px;
+  font-size: 14px;
+}
+.platform--pos .thread-row-action {
+  min-height: 32px;
+}
+.platform--pos .thread-feedback {
+  font-size: 14px;
+}
+.platform--pos .page-header {
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.platform--pos .page-header h1 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  letter-spacing: -0.6px;
+}
+.platform--pos .page-description {
+  font-size: 14px;
+}
+.platform--pos .page-header__actions {
+  padding-top: 0;
+}
+.platform--pos .thread-context-bar {
+  gap: 6px 12px;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  font-size: 12px;
+}
+.platform--pos .thread-context-bar__trailing,
+.platform--pos .app-footnote,
+.platform--pos .document-context-note p,
+.platform--pos .document-list-header p,
+.platform--pos .document-description p,
+.platform--pos .document-detail-footer > span {
+  font-size: 12px;
+}
+.platform--pos .thread-tabs {
+  gap: 24px;
+  margin-bottom: 18px;
+}
+.platform--pos .thread-tabs [role='tab'] {
+  min-height: 44px;
+  font-size: 14px;
+}
+.platform--pos .thread-back-button {
+  min-height: 44px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.platform--pos .details-list dt,
+.platform--pos .metadata-grid dt {
+  font-size: 11px;
+}
+.platform--pos .details-list dd,
+.platform--pos .metadata-grid dd {
+  font-size: 14px;
+}
+.pos-comm-shell {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  width: 100%;
+  height: calc(100dvh - 204px);
+  min-height: 560px;
+  max-height: 860px;
+  overflow: hidden;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 3px 10px #00000010;
+}
+.pos-function-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px;
+  border-right: 1px solid #555;
+  background: #242424;
+}
+.pos-function-key {
+  position: relative;
+  display: grid;
+  flex: 1 1 0;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  justify-content: stretch;
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+  min-height: 57px;
+  padding: 6px;
+  border: 1px solid #777;
+  border-radius: 2px;
+  background: #3b3b3b;
+  color: #fff;
+  text-align: center;
+  line-height: 1.3;
+}
+.pos-function-key:hover:not(:disabled) {
+  border-color: #fff;
+  background: #535353;
+}
+.pos-function-key[aria-current='page'],
+.pos-function-key[aria-pressed='true'],
+.pos-function-key.is-active {
+  border-color: #f2b5bf;
+  background: #b60d28;
+  color: #fff;
+}
+.pos-function-key:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 5px #c8102e;
+}
+.pos-function-key:disabled {
+  border-color: #555;
+  background: #2d2d2d;
+  color: #c2c2c2;
+  opacity: 1;
+}
+.pos-function-key__code {
+  font-size: 12px;
+  font-weight: 500;
+}
+.pos-function-key__label {
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.pos-function-key__hint {
+  /* Keep the availability/shortcut explanation in the accessible name without
+     squeezing three rows of text into the register's eight fixed touch keys. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.pos-comm-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+.pos-comm-header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-height: 61px;
+  padding: 13px 20px;
+  border-bottom: 1px solid #bbb;
+  background: #f2f2f2;
+}
+.pos-comm-header h1,
+.pos-comm-header h2,
+.pos-comm-header p {
+  margin: 0;
+}
+.pos-comm-header h1,
+.pos-comm-header h2,
+.pos-comm-header strong {
+  font-size: 19px;
+  letter-spacing: -0.2px;
+}
+.pos-comm-header > span,
+.pos-comm-header p {
+  color: #444;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pos-comm-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 20px;
+  background: #fff;
+}
+.pos-comm-body > :last-child {
+  margin-bottom: 0;
+}
+.pos-menu-heading {
+  margin: 3px 0 24px;
+}
+.pos-menu-heading > .eyebrow {
+  display: block;
+  margin-bottom: 12px;
+}
+.pos-menu-heading h1:focus {
+  outline: 2px solid #c8102e;
+  outline-offset: 2px;
+}
+.pos-menu-heading h1 {
+  margin-bottom: 8px;
+  font-size: 29px;
+  line-height: 1.2;
+  letter-spacing: -0.65px;
+}
+.pos-menu-heading p {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: #555;
+  font-size: 14px;
+}
+.pos-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.pos-menu-card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-content: center;
+  gap: 9px 13px;
+  min-width: 0;
+  min-height: 133px;
+  padding: 20px;
+  border: 1px solid #999;
+  border-top: 4px solid #c8102e;
+  border-radius: 2px;
+  background: #fff;
+  color: #111;
+  text-align: left;
+}
+.pos-menu-card:hover:not(:disabled) {
+  border-color: #111;
+  border-top-color: #c8102e;
+  background: #fff5f6;
+}
+.pos-menu-card__number {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dcb5bc;
+  border-radius: 2px;
+  background: #fff1f3;
+  color: #a60d26;
+  font-size: 17px;
+  font-weight: 700;
+}
+.pos-menu-card strong {
+  align-self: end;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.pos-menu-card small {
+  color: #555;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.pos-menu-card--unavailable,
+.pos-menu-card:disabled {
+  border-color: #c6c6c6;
+  background: #f4f4f4;
+  color: #555;
+  opacity: 1;
+  cursor: not-allowed;
+}
+.pos-menu-card--unavailable .pos-menu-card__number,
+.pos-menu-card:disabled .pos-menu-card__number {
+  border-color: #bbb;
+  background: #e6e6e6;
+  color: #555;
+}
+.pos-menu-note {
+  margin: 22px 0 0;
+  padding: 13px 15px;
+  border-left: 3px solid #888;
+  background: #f5f5f5;
+  color: #444;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.pos-exit-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 330px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 10px;
+}
+.pos-exit-screen h1 {
+  font-size: 30px;
+  letter-spacing: -0.6px;
+}
+.pos-exit-screen p {
+  color: #444;
+  font-size: 15px;
+}
+.platform--pos .document-list-header {
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.platform--pos .document-list-header h2 {
+  font-size: 23px;
+}
+.platform--pos .document-filter {
+  gap: 12px;
+}
+.platform--pos .document-metadata {
+  gap: 20px;
+}
+.platform--pos .document-toolbar {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.platform--pos .document-toolbar > span {
+  font-size: 14px;
+}
+.platform--pos .document-display-controls {
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+.platform--pos .document-display-controls .thread-button {
+  min-height: 40px;
+  font-size: 13px;
+}
+.platform--pos .document-stage {
+  min-height: 260px;
+  max-height: 50dvh;
+  overflow: auto;
+  padding: 16px;
+  border-color: #aaa;
+  background: #ddd;
+}
+.platform--pos .document-stage:not(.document-stage--actual) {
+  display: block;
+}
+.platform--pos .document-stage:not(.document-stage--actual) .document-image-state {
+  margin: 0 auto;
+}
+.platform--pos .document-stage--actual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.platform--pos .document-stage--actual .document-image-state {
+  flex: 0 0 auto;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
+}
+.platform--pos .document-stage--actual img {
+  width: auto;
+  max-width: none;
+}
+.platform--pos .document-image-note,
+.platform--pos .document-scroll-help {
+  font-size: 12px;
+}
+.platform--pos [hidden] {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .presentation-switch button {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+  .platform--pos .pos-host-header {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .platform--pos .pos-host-status {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .platform--pos .workspace > main {
+    padding: 12px;
+  }
+  .pos-comm-shell {
+    grid-template-columns: 148px minmax(0, 1fr);
+  }
+  .pos-comm-header {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .pos-comm-body {
+    padding: 16px;
+  }
+  .pos-menu-card {
+    padding: 16px;
+  }
+}
+@media (max-width: 740px) {
+  .presentation-switch button {
+    min-height: 36px;
+    padding-right: 9px;
+    padding-left: 9px;
+    font-size: 11px;
+  }
+  .platform:not(.platform--pos) .topbar {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .platform:not(.platform--pos) .topbar-right {
+    flex-wrap: wrap;
+  }
+  .pos-host-header {
+    gap: 12px;
+    padding: 12px;
+  }
+  .pos-host-header img {
+    width: 108px;
+  }
+  .pos-host-header strong {
+    font-size: 15px;
+  }
+  .pos-host-header > div {
+    gap: 8px 12px;
+  }
+  .pos-host-status {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  .platform--pos .workspace > main {
+    padding: 10px;
+  }
+  .platform--pos .workspace-footer {
+    padding: 12px;
+    font-size: 11px;
+  }
+  .platform--pos .workspace-footer label {
+    flex-wrap: wrap;
+  }
+  .platform--pos .application-section {
+    min-height: 0;
+    padding: 10px 0 20px;
+  }
+  .platform--pos .app-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .platform--pos .app-card {
+    min-height: 260px;
+    padding: 20px;
+  }
+  .platform--pos .app-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .pos-comm-shell {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .pos-function-rail {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    overflow: visible;
+    padding: 8px;
+    border-right: 0;
+    border-bottom: 1px solid #555;
+  }
+  .pos-function-key {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 77px;
+    padding: 7px 3px;
+  }
+  .pos-function-key__label {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  .pos-function-key__code {
+    font-size: 11px;
+  }
+  .pos-function-key__hint {
+    font-size: 9px;
+  }
+  .pos-comm-header {
+    min-height: 57px;
+    padding: 12px;
+  }
+  .pos-comm-header h1,
+  .pos-comm-header h2,
+  .pos-comm-header strong {
+    font-size: 17px;
+  }
+  .pos-comm-body {
+    overflow: visible;
+    padding: 14px 12px;
+  }
+  .pos-menu-heading {
+    margin: 2px 0 18px;
+  }
+  .pos-menu-heading h1 {
+    font-size: 25px;
+  }
+  .pos-menu-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .pos-menu-card {
+    min-height: 110px;
+    padding: 15px;
+  }
+  .platform--pos .page-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .platform--pos .page-header h1 {
+    font-size: 25px;
+  }
+  .platform--pos .thread-context-bar__trailing {
+    margin-left: 0;
+  }
+  .platform--pos .document-filter select {
+    min-width: 110px;
+    max-width: 200px;
+  }
+  .platform--pos .thread-panel__body {
+    padding: 16px;
+  }
+  .platform--pos .thread-panel__body > .thread-table-scroll:only-child {
+    margin: -16px;
+  }
+  .platform--pos .thread-panel--flush .thread-panel__body,
+  .platform--pos .panel-flush .thread-panel__body {
+    padding: 0;
+  }
+  .platform--pos .thread-table th,
+  .platform--pos .thread-table td {
+    padding: 12px;
+  }
+  .platform--pos .document-toolbar {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .platform--pos .document-toolbar > span {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+  .platform--pos .document-toolbar .thread-button {
+    flex: 1;
+    min-height: 44px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+  .platform--pos .document-display-controls {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .platform--pos .document-stage {
+    min-height: 220px;
+    max-height: 60dvh;
+    padding: 10px;
+  }
+  .pos-exit-screen {
+    min-height: 280px;
+    padding: 18px 3px;
+  }
+}

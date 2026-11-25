@@ -1,0 +1,78 @@
+{
+  "scope": "Phase 4 UPC/store/date variation, captured before Phase 5 accessibility changes.",
+  "proof": {
+    "sourceUnchanged": true,
+    "builtUiUnchanged": true
+  },
+  "browserDemonstration": "New mode appeared and store 1002 returned transactions 70002 and 70004 after runtime restart only, before any UI rebuild.",
+  "assetServingEvidence": [
+    "Fresh hub: no application entry requested",
+    "Open TH: /modules/transaction-history.js served, not AC",
+    "Direct AC: /modules/associate-communications.js served"
+  ],
+  "sourceFiles": [
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\packages\\thread-react\\index.tsx",
+      "before": "D183A5B40CE9D9FE4FBDB763F26CE3651FAFEC803406154089E5C9FBEB8F02B5",
+      "after": "D183A5B40CE9D9FE4FBDB763F26CE3651FAFEC803406154089E5C9FBEB8F02B5"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\src\\main.tsx",
+      "before": "E5610900E8655471D416F0BB3E99F00CB758D262EB996FB6FF619D3061611EFC",
+      "after": "E5610900E8655471D416F0BB3E99F00CB758D262EB996FB6FF619D3061611EFC"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\src\\apps\\transaction-history.tsx",
+      "before": "83C1CF7BC7763E3A08B51C7725EC0A4CD10E151CE3245AD20BE18503B92B54BD",
+      "after": "83C1CF7BC7763E3A08B51C7725EC0A4CD10E151CE3245AD20BE18503B92B54BD"
+    }
+  ],
+  "builtUiFiles": [
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\index.html",
+      "before": "71D9B0A0A74BFA45D4EA4EF31F935B91241C28564832E480DC5E2602EF7F3E04",
+      "after": "71D9B0A0A74BFA45D4EA4EF31F935B91241C28564832E480DC5E2602EF7F3E04"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\assets\\main-D90_zMef.css",
+      "before": "F0ADE9842270B7D82133F7CC7EFCC84E685814CC70492C5D811FD47F8D7C336B",
+      "after": "F0ADE9842270B7D82133F7CC7EFCC84E685814CC70492C5D811FD47F8D7C336B"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\assets\\react-vendor-CrowJ5J7.js",
+      "before": "19780213AC3C7EAE541F3EB0F1A4EB7466E60511C3B442070B4D5E54E6CBFD3E",
+      "after": "19780213AC3C7EAE541F3EB0F1A4EB7466E60511C3B442070B4D5E54E6CBFD3E"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\assets\\spool-client-BHHhmRET.js",
+      "before": "E69834C74DCC40674241A344D4FB00E2A62F977681EB7D1DF98344531D9D063D",
+      "after": "E69834C74DCC40674241A344D4FB00E2A62F977681EB7D1DF98344531D9D063D"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\assets\\spool-runtime-Bw5u9SlG.js",
+      "before": "EAE3544C3AAF110BA81B38DDCB1C8AF0ABBCF945CF7772F7826554D349E2C38B",
+      "after": "EAE3544C3AAF110BA81B38DDCB1C8AF0ABBCF945CF7772F7826554D349E2C38B"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\assets\\thread-TBuZdmKX.js",
+      "before": "AE2C0B8AED86B3CB4700850E3514B25D5E02038F7C7735FA0B6C4B46B9D6F79E",
+      "after": "AE2C0B8AED86B3CB4700850E3514B25D5E02038F7C7735FA0B6C4B46B9D6F79E"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\modules\\associate-communications.js",
+      "before": "086ACA8D0DCFEE7F3B2B6965519FC53D2193AB19A0D097ADFAC2BFB451243E27",
+      "after": "086ACA8D0DCFEE7F3B2B6965519FC53D2193AB19A0D097ADFAC2BFB451243E27"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\modules\\main.js",
+      "before": "D280A2E8E63DD5A4EF88258DAD323833FED1CCE4AE8C3D98256A3C4A73F2A222",
+      "after": "D280A2E8E63DD5A4EF88258DAD323833FED1CCE4AE8C3D98256A3C4A73F2A222"
+    },
+    {
+      "path": "C:\\Users\\DT130344\\Downloads\\Macys POC\\overlock-poc\\dist\\modules\\transaction-history.js",
+      "before": "C75EC54449D453B505D8196F80DCBCD0C21317D9F887AF02BFDD9260DA33D2D4",
+      "after": "C75EC54449D453B505D8196F80DCBCD0C21317D9F887AF02BFDD9260DA33D2D4"
+    }
+  ],
+  "checks": "76 unit/integration/review checks + 5 production-bundle checks passed; TypeScript and Vite build passed."
+}

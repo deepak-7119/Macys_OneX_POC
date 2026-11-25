@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">OneX Hub current POC architecture</title>
+  <desc id="desc">Architecture showing the browser-based OneX Hub, Spool manifests, Thread components, independently hosted Transaction History and Associate Communications bundles, Bobbin fallback, shared session service, Apigee mock and legacy backend.</desc>
+  <defs>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c41230"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#25658a"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#76539b"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#60656d"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#111827" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #121418; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #626872; }
+      .boundary-title { font: 700 14px Arial, sans-serif; fill: #3f4650; letter-spacing: 1.8px; }
+      .node-title { font: 700 21px Arial, sans-serif; fill: #15171a; }
+      .node-subtitle { font: 700 13px Arial, sans-serif; fill: #c41230; letter-spacing: 1px; }
+      .body { font: 400 14px Arial, sans-serif; fill: #424850; }
+      .body-strong { font: 700 14px Arial, sans-serif; fill: #25292e; }
+      .tiny { font: 400 12px Arial, sans-serif; fill: #5f6670; }
+      .label-red { font: 700 12px Arial, sans-serif; fill: #a30f28; }
+      .label-blue { font: 700 12px Arial, sans-serif; fill: #1f5879; }
+      .label-purple { font: 700 12px Arial, sans-serif; fill: #68468e; }
+      .pill { font: 700 12px Arial, sans-serif; fill: #25292e; }
+      .footer { font: 400 13px Arial, sans-serif; fill: #555c65; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#f7f7f5"/>
+  <rect width="1600" height="8" fill="#c41230"/>
+
+  <text x="58" y="62" class="title">OneX Hub — Current POC Architecture</text>
+  <text x="58" y="92" class="subtitle">One shared browser runtime · independently published micro-frontends · synthetic local services</text>
+
+  <g transform="translate(1034 42)">
+    <line x1="0" y1="12" x2="38" y2="12" stroke="#c41230" stroke-width="3" marker-end="url(#arrow-red)"/>
+    <text x="48" y="16" class="tiny">UI load</text>
+    <line x1="124" y1="12" x2="162" y2="12" stroke="#25658a" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <text x="172" y="16" class="tiny">API data</text>
+    <line x1="262" y1="12" x2="300" y2="12" stroke="#76539b" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <text x="310" y="16" class="tiny">Session</text>
+    <line x1="0" y1="38" x2="38" y2="38" stroke="#60656d" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow-gray)"/>
+    <text x="48" y="42" class="tiny">Build/config</text>
+  </g>
+
+  <!-- User -->
+  <g filter="url(#shadow)">
+    <rect x="48" y="215" width="172" height="126" rx="12" fill="#ffffff" stroke="#d7d9dd"/>
+  </g>
+  <circle cx="134" cy="250" r="20" fill="#17191c"/>
+  <circle cx="134" cy="244" r="6" fill="#ffffff"/>
+  <path d="M122 263 C124 252 144 252 146 263" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <text x="134" y="294" text-anchor="middle" class="node-title">Associate</text>
+  <text x="134" y="319" text-anchor="middle" class="body">Browser session</text>
+
+  <!-- Browser boundary -->
+  <rect x="270" y="145" width="785" height="292" rx="18" fill="#ffffff" stroke="#c8cbd0" stroke-width="2"/>
+  <rect x="270" y="145" width="785" height="42" rx="18" fill="#ececea"/>
+  <rect x="270" y="169" width="785" height="18" fill="#ececea"/>
+  <text x="294" y="172" class="boundary-title">BROWSER EXECUTION BOUNDARY</text>
+  <circle cx="1000" cy="166" r="5" fill="#4e9b72"/>
+  <text x="988" y="171" text-anchor="end" class="tiny">single page</text>
+
+  <g filter="url(#shadow)">
+    <rect x="310" y="218" width="315" height="162" rx="12" fill="#fff8f9" stroke="#e8bcc5"/>
+  </g>
+  <text x="334" y="246" class="node-subtitle">ONE SHARED SHELL</text>
+  <text x="334" y="278" class="node-title">OneX Hub</text>
+  <text x="334" y="306" class="body">Navigation + single-spa root config</text>
+  <text x="334" y="330" class="body">Loads the selected route at runtime</text>
+  <rect x="334" y="344" width="144" height="24" rx="12" fill="#f1dce1"/>
+  <text x="406" y="361" text-anchor="middle" class="pill">localhost:4300</text>
+
+  <g filter="url(#shadow)">
+    <rect x="675" y="218" width="335" height="162" rx="12" fill="#f7fafb" stroke="#bdd1dc"/>
+  </g>
+  <text x="699" y="246" class="node-subtitle" fill="#25658a">MOUNTED APP SLOT</text>
+  <text x="699" y="278" class="node-title">Selected micro-frontend</text>
+  <rect x="699" y="300" width="136" height="36" rx="8" fill="#e8f1f5"/>
+  <text x="767" y="323" text-anchor="middle" class="body-strong">Transaction History</text>
+  <rect x="846" y="300" width="140" height="36" rx="8" fill="#e8f1f5"/>
+  <text x="916" y="315" text-anchor="middle" class="body-strong">Associate</text>
+  <text x="916" y="330" text-anchor="middle" class="body-strong">Communications</text>
+  <text x="699" y="360" class="tiny">Only one route is mounted; both apps share the shell.</text>
+
+  <!-- User and intra-browser arrows -->
+  <line x1="220" y1="278" x2="300" y2="278" stroke="#c41230" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="260" y="265" text-anchor="middle" class="label-red">launch</text>
+  <line x1="625" y1="299" x2="665" y2="299" stroke="#c41230" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="645" y="286" text-anchor="middle" class="label-red">mount</text>
+
+  <!-- MFE storage -->
+  <g filter="url(#shadow)">
+    <rect x="1120" y="145" width="425" height="292" rx="18" fill="#ffffff" stroke="#8eb7c8" stroke-width="2"/>
+  </g>
+  <rect x="1120" y="145" width="425" height="42" rx="18" fill="#e8f1f5"/>
+  <rect x="1120" y="169" width="425" height="18" fill="#e8f1f5"/>
+  <text x="1144" y="172" class="boundary-title">STATIC ASSET ORIGIN · PORT 4310</text>
+  <text x="1144" y="222" class="node-title">MFE storage simulation</text>
+  <text x="1144" y="248" class="body">Stand-in for GCP Storage / CDN</text>
+  <rect x="1144" y="270" width="178" height="56" rx="9" fill="#f2f6f8" stroke="#d7e2e7"/>
+  <text x="1233" y="294" text-anchor="middle" class="body-strong">transaction-history.js</text>
+  <text x="1233" y="314" text-anchor="middle" class="tiny">independent entry</text>
+  <rect x="1334" y="270" width="187" height="56" rx="9" fill="#f2f6f8" stroke="#d7e2e7"/>
+  <text x="1428" y="294" text-anchor="middle" class="body-strong">associate-comms.js</text>
+  <text x="1428" y="314" text-anchor="middle" class="tiny">independent entry</text>
+  <rect x="1144" y="340" width="377" height="54" rx="9" fill="#f5f5f3"/>
+  <text x="1162" y="362" class="body-strong">Shared chunks</text>
+  <text x="1162" y="383" class="tiny">Thread UI + React vendor · immutable cache</text>
+  <text x="1144" y="418" class="label-blue">STATIC BUNDLES — NOT APPLICATION CONTAINERS</text>
+
+  <line x1="1120" y1="298" x2="1020" y2="298" stroke="#c41230" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="1070" y="283" text-anchor="middle" class="label-red">dynamic import</text>
+
+  <!-- Server boundary -->
+  <rect x="270" y="495" width="785" height="404" rx="18" fill="#ffffff" stroke="#c8cbd0" stroke-width="2"/>
+  <rect x="270" y="495" width="785" height="42" rx="18" fill="#ececea"/>
+  <rect x="270" y="519" width="785" height="18" fill="#ececea"/>
+  <text x="294" y="522" class="boundary-title">SERVER EXECUTION BOUNDARY · CURRENT FALLBACK</text>
+
+  <g filter="url(#shadow)">
+    <rect x="310" y="568" width="356" height="253" rx="12" fill="#fff8f9" stroke="#e2aab6"/>
+  </g>
+  <text x="334" y="598" class="node-subtitle">ONE SERVICE · PORT 4300</text>
+  <text x="334" y="630" class="node-title">Bobbin fallback</text>
+  <text x="334" y="660" class="body-strong">Hub host + bootstrap APIs</text>
+  <text x="334" y="684" class="body">Serves shell and entitled Spool manifests</text>
+  <text x="334" y="716" class="body-strong">Session + authorization boundary</text>
+  <text x="334" y="740" class="body">Resolves session and checks app capability</text>
+  <text x="334" y="772" class="body-strong">Typed API adapters</text>
+  <text x="334" y="796" class="body">Binder-named POC routes forward approved operations</text>
+
+  <g filter="url(#shadow)">
+    <rect x="720" y="568" width="285" height="112" rx="12" fill="#faf7fc" stroke="#c9b7da"/>
+  </g>
+  <text x="744" y="598" class="node-subtitle" fill="#76539b">PORT 4340</text>
+  <text x="744" y="628" class="node-title">Shared session</text>
+  <text x="744" y="654" class="body">Synthetic enterprise IDM stand-in</text>
+
+  <g filter="url(#shadow)">
+    <rect x="720" y="716" width="285" height="105" rx="12" fill="#f7fafb" stroke="#bdd1dc"/>
+  </g>
+  <text x="744" y="746" class="node-subtitle" fill="#25658a">PORT 4350</text>
+  <text x="744" y="776" class="node-title">Apigee mock</text>
+  <text x="744" y="801" class="body">Gateway policy and routing boundary</text>
+
+  <!-- Spool -->
+  <g filter="url(#shadow)">
+    <rect x="48" y="510" width="172" height="152" rx="12" fill="#ffffff" stroke="#d7d9dd"/>
+  </g>
+  <text x="72" y="542" class="node-subtitle">CONFIGURATION</text>
+  <text x="72" y="574" class="node-title">Spool</text>
+  <text x="72" y="603" class="body">Routes</text>
+  <text x="72" y="625" class="body">Entry modules</text>
+  <text x="72" y="647" class="body">Capabilities + Thread refs</text>
+  <line x1="220" y1="586" x2="300" y2="586" stroke="#60656d" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow-gray)"/>
+  <text x="260" y="573" text-anchor="middle" class="tiny">manifest</text>
+
+  <!-- Thread -->
+  <g filter="url(#shadow)">
+    <rect x="1120" y="500" width="425" height="142" rx="12" fill="#ffffff" stroke="#d7d9dd"/>
+  </g>
+  <text x="1144" y="532" class="node-subtitle">BUILD-TIME REUSE</text>
+  <text x="1144" y="564" class="node-title">Thread component inventory</text>
+  <text x="1144" y="592" class="body">Versioned React components, tokens and shared patterns</text>
+  <text x="1144" y="617" class="tiny">Bundled into MFE entries/shared chunks; Thread does not render remotely.</text>
+  <path d="M1332 500 L1332 454" fill="none" stroke="#60656d" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow-gray)"/>
+  <text x="1345" y="475" class="tiny">build + publish</text>
+
+  <!-- Runtime arrows -->
+  <path d="M468 568 L468 446 L468 390" fill="none" stroke="#c41230" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <rect x="480" y="449" width="142" height="38" rx="8" fill="#fff1f4"/>
+  <text x="551" y="465" text-anchor="middle" class="label-red">bootstrap + entitled</text>
+  <text x="551" y="480" text-anchor="middle" class="label-red">app manifests</text>
+
+  <path d="M842 380 L842 460 L650 460 L650 620" fill="none" stroke="#25658a" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <rect x="674" y="444" width="132" height="34" rx="8" fill="#edf5f8"/>
+  <text x="740" y="466" text-anchor="middle" class="label-blue">same-origin API</text>
+
+  <line x1="666" y1="624" x2="710" y2="624" stroke="#76539b" stroke-width="3" marker-end="url(#arrow-purple)"/>
+  <text x="688" y="609" text-anchor="middle" class="label-purple">resolve</text>
+  <line x1="666" y1="770" x2="710" y2="770" stroke="#25658a" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="688" y="755" text-anchor="middle" class="label-blue">forward</text>
+
+  <!-- Legacy backend -->
+  <g filter="url(#shadow)">
+    <rect x="1120" y="716" width="425" height="105" rx="12" fill="#ffffff" stroke="#bdd1dc"/>
+  </g>
+  <text x="1144" y="746" class="node-subtitle" fill="#25658a">PORT 4360</text>
+  <text x="1144" y="776" class="node-title">Synthetic legacy backend</text>
+  <text x="1144" y="801" class="body">Transaction and document source-shaped APIs</text>
+  <line x1="1005" y1="770" x2="1110" y2="770" stroke="#25658a" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="1058" y="755" text-anchor="middle" class="label-blue">/legacy/*</text>
+
+  <!-- Governance plane -->
+  <rect x="310" y="842" width="695" height="35" rx="8" fill="#f2f2f0"/>
+  <text x="334" y="864" class="body-strong">Management plane:</text>
+  <text x="476" y="864" class="body">Thread inventory · discovery · build jobs · artifact review · release / rollback</text>
+
+  <!-- Production decision callout -->
+  <rect x="1120" y="850" width="425" height="74" rx="12" fill="#fff3df" stroke="#e7c37c"/>
+  <text x="1144" y="878" class="body-strong">Open production decision</text>
+  <text x="1144" y="901" class="body">Enterprise edge must replace or confirm Bobbin’s</text>
+  <text x="1144" y="920" class="body">hosting, session, authorization and API responsibilities.</text>
+
+  <line x1="48" y1="951" x2="1545" y2="951" stroke="#d6d8db"/>
+  <text x="58" y="978" class="footer">CURRENT LOCAL POC · SYNTHETIC IDENTITIES AND DATA ONLY</text>
+  <text x="1542" y="978" text-anchor="end" class="footer">4300 Hub/Bobbin · 4310 MFE storage · 4340 session · 4350 Apigee · 4360 backend</text>
+</svg>

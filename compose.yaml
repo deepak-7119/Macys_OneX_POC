@@ -1,0 +1,131 @@
+name: overlock-local
+
+x-runtime: &runtime
+  build:
+    context: .
+    dockerfile: Dockerfile
+  init: true
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp
+  security_opt:
+    - no-new-privileges:true
+  networks:
+    - overlock
+
+services:
+  one-x-hub:
+    <<: *runtime
+    image: overlock/one-x-hub:local
+    environment:
+      PORT: '8080'
+      SERVICE_NAME: one-x-hub
+      SESSION_INTERNAL_KEY: local-session-key-for-synthetic-topology
+      SESSION_URL: http://session-service:8080
+      APIGEE_URL: http://apigee-mock:8080
+      MFE_PUBLIC_ORIGIN: http://127.0.0.1:4310
+    ports:
+      - '127.0.0.1:4300:8080'
+    depends_on:
+      mfe-storage:
+        condition: service_healthy
+      session-service:
+        condition: service_healthy
+      apigee-mock:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/health').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  mfe-storage:
+    <<: *runtime
+    image: overlock/mfe-storage:local
+    environment:
+      PORT: '8080'
+      SERVICE_NAME: mfe-storage
+      HUB_PUBLIC_ORIGIN: http://127.0.0.1:4300
+    ports:
+      - '127.0.0.1:4310:8080'
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/modules/transaction-history.js').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  session-service:
+    <<: *runtime
+    image: overlock/session-service:local
+    environment:
+      PORT: '8080'
+      SERVICE_NAME: session-service
+      SESSION_INTERNAL_KEY: local-session-key-for-synthetic-topology
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/health').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  apigee-mock:
+    <<: *runtime
+    image: overlock/apigee-mock:local
+    environment:
+      PORT: '8080'
+      SERVICE_NAME: apigee-mock
+      BACKEND_URL: http://legacy-backend:8080
+    depends_on:
+      legacy-backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/health').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  legacy-backend:
+    <<: *runtime
+    image: overlock/legacy-backend:local
+    environment:
+      PORT: '8080'
+      SERVICE_NAME: legacy-backend
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/health').then(r=>{if(!r.ok)process.exit(1)})",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+networks:
+  overlock:
+    driver: bridge
